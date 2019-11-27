@@ -11,6 +11,6 @@ then
     echo "PostgreSQL started"
 fi
 
-python manage.py initdb
+python manage.py forge
 
 exec "$@"

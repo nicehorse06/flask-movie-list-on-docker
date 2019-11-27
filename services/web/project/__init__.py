@@ -19,6 +19,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app = Flask(__name__)
 app.config.from_object("project.config.Config")
+app.config['SECRET_KEY'] = 'dev'  # 設定一個post驗證的key，沒有就不能post
 db = SQLAlchemy(app)  # 初始化DB
 
 login_manager = LoginManager(app)  # 初始化登入類
