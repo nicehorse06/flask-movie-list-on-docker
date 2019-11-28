@@ -74,3 +74,14 @@ docker-compose exec web python manage.py admin
 
 ##### 查看log
 docker-compose -f docker-compose.prod.yml logs -f 
+
+## 部署與開發筆記
+如果在雲端服務上，如GCP開80以外的port口，需要新設定一個防火牆規則
+* 如0.0.0.0/0的TCP:1337允許
+現階段因為設定port為1337，需要在nginx.conf裡面host加上port號
+* 如 `proxy_set_header Host $host:1337`
+* 這樣flask在轉址時，其host才會為host:1337
+現階段部署方式為把專案用git載到VM中，再啟動docker compose指令做部署
+* 可再尋找有無更優雅的做法
+目前要思考開發時，是否要在docker環境下，還是說循以前的pytohn流做法
+要思考什麼時機點才要把docker image上傳到docker hub
